@@ -35,6 +35,20 @@ int main(void)
 {
     CURL *curl;
     CURLcode res;
+
+     // api key
+    char api_key[256] = ""; // Declare as an array to store the API key
+    char username[256] = "";
+
+    printf("Enter your API key: ");
+    scanf("%255s", api_key); // Limit input to buffer size
+
+    printf("Enter your username: ");
+    scanf("%255s", username); // Limit input to buffer size
+
+    // URL to send the GET request
+    char url[256]; // Adjust the buffer size as needed
+   
     // prompt to ask for which api to use
     // 1. account info
     // 2. champion rotation
@@ -46,6 +60,7 @@ int main(void)
     // 8. spectator info
     // 9. champion mastery
     // 10. champion mastery score
+
 
     printf("Which API would you like to use?\n");
     printf("1. account info\n");
@@ -62,13 +77,6 @@ int main(void)
     scanf("%d", &api);
     printf("You chose %d\n", api);
 
-    // api key
-    const char *api_key = ""; // Replace with your API key
-
-    char username[256] = "";// Replace with your username
-
-    // URL to send the GET request
-    char url[256]; // Adjust the buffer size as needed
    
 
     // create a switch statement to choose which api to use
@@ -140,7 +148,7 @@ int main(void)
         // Cleanup libcurl
         curl_easy_cleanup(curl);
     }
-    // option to reset or exit
+     // option to reset or exit
     printf("Would you like to use another API?\n");
     printf("1. Yes\n");
     printf("2. No\n");
