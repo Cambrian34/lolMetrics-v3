@@ -65,21 +65,18 @@ int main(void)
     // api key
     const char *api_key = ""; // Replace with your API key
 
+    char username[256] = "";// Replace with your username
+
     // URL to send the GET request
     char url[256]; // Adjust the buffer size as needed
-    // http for account info
-   // snprintf(url, sizeof(url), "https://na1.api.riotgames.com/riot/account/v1/accounts/by-riot-id/RagingPuma?api_key=%s", api_key);
-    // https for champion rotation
-    //snprintf(url, sizeof(url), "https://na1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=%s", api_key);
-    // https for summoner info
-    //snprintf(url, sizeof(url), "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/RAgingPuma?api_key=%s", api_key);
+   
 
     // create a switch statement to choose which api to use
     switch (api)
     {
     case 1:
         // http for account info
-        snprintf(url, sizeof(url), "https://na1.api.riotgames.com/riot/account/v1/accounts/by-riot-id/RagingPuma?api_key=%s", api_key);
+        snprintf(url, sizeof(url), "https://na1.api.riotgames.com/riot/account/v1/accounts/by-riot-id/%s?api_key=%s", username,api_key);
         break;
     case 2:
         // https for champion rotation
@@ -87,7 +84,7 @@ int main(void)
         break;
     case 3:
         // https for summoner info
-        snprintf(url, sizeof(url), "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/RAgingPuma?api_key=%s", api_key);
+        snprintf(url, sizeof(url), "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/%s?api_key=%s", username,api_key);
         break;
     case 4:
         // https for match history
