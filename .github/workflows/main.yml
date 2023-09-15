@@ -21,12 +21,12 @@ jobs:
 
       - name: Compile C code
         run: |
-          gcc -o your_program.exe your_program.c -lcurl
+          gcc -o your_program.exe main.c -lcurl
         if: matrix.os == 'windows-latest'
         
       - name: Compile C code
         run: |
-          gcc -o your_program your_program.c -lcurl
+          gcc -o your_program main.c -lcurl
         if: matrix.os == 'macos-latest'
 
       - name: Run compiled program
