@@ -1,0 +1,35 @@
+name: Compile C Code
+
+on: [push]
+
+jobs:
+  compile:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up build environment
+        if: matrix.os == 'windows-latest'
+        run: |
+          choco install mingw
+          echo "::add-path::C:\Program Files\mingw-w64\${{ env.MINGW_ARCH }}\bin"
+
+      - name: Compile C code
+        run: |
+          gcc -o your_program.exe your_program.c -lcurl
+        if: matrix.os == 'windows-latest'
+        
+      - name: Compile C code
+        run: |
+          gcc -o your_program your_program.c -lcurl
+        if: matrix.os == 'macos-latest'
+
+      - name: Run compiled program
+        run: |
+          ./your_program
+        if: matrix.os == 'macos-latest'
