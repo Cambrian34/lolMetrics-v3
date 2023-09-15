@@ -26,7 +26,7 @@ jobs:
         
       - name: Compile C code
         run: |
-          gcc -o your_program main.c -lcurl
+          gcc -o your_program main.c -lcurl -lm
         if: matrix.os == 'macos-latest'
 
       - name: Run compiled program
