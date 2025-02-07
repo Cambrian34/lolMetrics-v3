@@ -1,5 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "riot_api.h"
+
+int main(void) {
+    char api_key[256];
+    char gameName[256];
+    char tagLine[256];
+
+    printf("Enter your API key: ");
+    scanf("%255s", api_key);
+
+    printf("Enter your game name: ");
+    scanf("%255s", gameName);
+
+    printf("Enter your tag line: ");
+    scanf("%255s", tagLine);
+
+    char *puuid = get_puuid(gameName, tagLine, api_key);
+    if (puuid) {
+        printf("PUUID: %s\n", puuid);
+        free(puuid);  // Free allocated memory
+    } else {
+        printf("Failed to retrieve PUUID\n");
+    }
+
+    return 0;
+}
+/*#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <curl/curl.h>
 
@@ -35,6 +63,9 @@ int main(void)
 {
     CURL *curl;
     CURLcode res;
+
+    //p,ayer puuid
+    char puuid[256] = ""; // Declare as an array to store the puuid after 
 
      // api key
     char api_key[256] = ""; // Declare as an array to store the API key
@@ -165,3 +196,22 @@ int main(void)
     
 
 }
+//get puuid
+//get puuid by tagline and gamename
+   //https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/ragingpuma/puma?api_key=RGAPI-7da17c96-6efb-4ac3-835f-4bd2032a37ff
+//format: https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}?api_key=RGAPI-7da17c96-6efb-4ac3-835f-4bd2032a37ff
+
+char *get_puuid(char *gameName, char *tagLine, char *api_key)
+{
+    char url[256];
+    snprintf(url, sizeof(url), "https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/%s/%s?api_key=%s", gameName, tagLine, api_key);
+    //return format
+    /*
+    "puuid": "uL4AQx1pfnH1TdAageFtEQO7fvZSBaeHDcdsXx7F5tg9s5JeSMvTU11rKKnh-BReTiWK1mWAIxtXBg",
+    "gameName": "Ragingpuma",
+    "tagLine": "puma"
+    */
+   /*
+    return url;
+}
+*/
