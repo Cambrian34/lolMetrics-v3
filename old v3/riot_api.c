@@ -99,38 +99,3 @@ char *get_puuid(const char *gameName, const char *tagLine, const char *api_key) 
 
     return puuid; // Caller must free this
 }
-
-// Fetches account information using PUUID
-char *get_account_by_puuid(const char *puuid, const char *api_key) {
-    char url[256];
-    snprintf(url, sizeof(url), "https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/%s?api_key=%s", puuid, api_key);
-    return http_get(url);
-}
-
-// Fetches match history using PUUID
-char *get_match_history(const char *puuid, const char *api_key) {
-    char url[256];
-    snprintf(url, sizeof(url), "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/%s/ids?start=0&count=20&api_key=%s", puuid, api_key);
-    return http_get(url);
-}
-
-// Fetches match details using match ID
-char *get_match_details(const char *match_id, const char *api_key) {
-    char url[256];
-    snprintf(url, sizeof(url), "https://americas.api.riotgames.com/lol/match/v5/matches/%s?api_key=%s", match_id, api_key);
-    return http_get(url);
-}
-
-// Get active game information by PUUID
-char *get_active_game_by_puuid(const char *puuid, const char *api_key) {
-    char url[256];
-    snprintf(url, sizeof(url), "https://na1.api.riotgames.com/lol/spectator/v4/active-games/by-puuid/%s?api_key=%s", puuid, api_key);
-    return http_get(url);
-}
-
-// Get champion masteries by PUUID
-char *get_champion_masteries_by_puuid(const char *puuid, const char *api_key) {
-    char url[256];
-    snprintf(url, sizeof(url), "https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/%s?api_key=%s", puuid, api_key);
-    return http_get(url);
-}

@@ -33,10 +33,4 @@ char *get_match_history(const char *puuid, const char *api_key);
 // Fetches match details using match ID
 char *get_match_details(const char *match_id, const char *api_key);
 
-// Get active game information by PUUID
-char *get_active_game_by_puuid(const char *puuid, const char *api_key);
-
-// Get champion masteries by PUUID
-char *get_champion_masteries_by_puuid(const char *puuid, const char *api_key);
-
 #endif // RIOT_API_H

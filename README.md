@@ -29,6 +29,10 @@ This command line application allows users to make requests to the Riot Games De
 ## How to Use
 
 1. Compile the program.
+```shell
+$ gcc `pkg-config --cflags --libs gtk+-3.0` -o lolmetrics main.c gui.c riot_api.c cJSON.c -lcurl
+```
+   Ensure you have the necessary libraries installed (cURL, GTK, JSON-C).
 2. Run the executable.
 3. Enter your Riot API key when prompted.
 4. Enter your username when prompted.
@@ -79,6 +83,8 @@ Goodbye!
 ## Dependencies
 
 - [cURL](https://curl.se/): This program uses the cURL library for making HTTP requests. Make sure you have cURL installed on your system.
+- [GTK](https://www.gtk.org/): The GUI version of this program requires GTK for the graphical interface. Ensure you have the GTK development libraries installed.
+- [JSON-C]
 
 ## Notes
 
